@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+        }
+        .popup {
+            position: absolute;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            white-space: nowrap;
+            cursor: default;
+            animation: fadeIn 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // 定义不同的文字和颜色
+        const messages = [
+            { text: "早上好! 👋", color: "#FF6B6B" },
+            { text: "宝宝晚安", color: "#4ECDC4" },
+            { text: "想和你待在一起!", color: "#45B7D1" },
+            { text: "我像风一样无处不在", color: "#96CEB4" },
+            { text: "下一秒可以相见吗", color: "#FFEAA7" },
+            { text: "心想事成！", color: "#FFB347" },
+            { text: "今天过的开心嘛 😊", color: "#DDA0DD" },
+            { text: "我想你啦", color: "#98D8C8" },
+            { text: "🎉 surprise！", color: "#F7DC6F" },
+            { text: "💖 我喜欢你", color: "#F8A5C2" }
+        ];
+
+        // 创建弹窗的函数
+        function createPopup() {
+            const popup = document.createElement('div');
+            popup.className = 'popup';
+            
+            // 随机选择一条消息
+            const message = messages[Math.floor(Math.random() * messages.length)];
+            
+            // 设置样式
+            popup.textContent = message.text;
+            popup.style.backgroundColor = message.color;
+            popup.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+            popup.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+            popup.style.color = '#333';
+            
+            // 添加到页面
+            document.body.appendChild(popup);
+            
+        }
+
+        // 每隔1秒创建一个新弹窗
+        setInterval(createPopup, 300);
+        
+        // 立即创建几个弹窗
+        for(let i = 0; i < 5; i++) {
+            setTimeout(createPopup, i * 200);
+        }
+    </script>
+</body>
+</html>
